@@ -1,0 +1,31 @@
+{
+  "name": "contract-truffle",
+  "version": "1.0.0",
+  "description": "uniswap truffle contract",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "no test command"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gitslagga/contract-truffle.git"
+  },
+  "keywords": [
+    "uniswap",
+    "truffle",
+    "contract"
+  ],
+  "author": "slagga",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gitslagga/contract-truffle/issues"
+  },
+  "homepage": "https://github.com/gitslagga/contract-truffle#readme",
+  "dependencies": {
+    "@uniswap/v2-core": "^1.0.1",
+    "@uniswap/v2-periphery": "^1.1.0-beta.0"
+  }
+}
