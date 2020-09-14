@@ -10,3 +10,10 @@ the solidity contract using truffle
 * npm i --save @uniswap/v2-periphery
 * truffle compile --all
 * truffle migrate --reset
+
+## truffle console
+* let instance = await LiquidityValueCalculator.deployed()
+* let accounts = await web3.eth.getAccounts()
+* let balance = aweb3.utils.toWei("1", "ether")
+* let newInstance = await LiquidityValueCalculator.new()
+* .exit
