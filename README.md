@@ -36,6 +36,11 @@ the solidity contract using truffle
 ## truffle console
 * let instance = await GLDToken.deployed()
 * let accounts = await web3.eth.getAccounts()
-* let balance = aweb3.utils.toWei("1", "ether")
+* let balance = await instance.balanceOf(accounts[0])
+* balance   //BN {}
+* balance = await web3.utils.fromWei(balance.toString(), "ether")
+* balance   //'1000' 
+* balance = await web3.utils.toWei(balance, "ether")
+* balance   //'1000000000000000000000'
 * let newInstance = await GLDToken.new()
 * .exit
