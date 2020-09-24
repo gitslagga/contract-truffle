@@ -2,7 +2,7 @@ const GLDToken = artifacts.require("GLDToken");
 
 contract("GLDToken test", async accounts => {
     it("should put 1000*10**18 GLDToken in the first account", async () => {
-        let instance = await GLDToken.deployed();
+        let instance = await GLDToken.new(1000);
         let balance = await instance.balanceOf.call(accounts[0]);
         assert.equal(balance.valueOf(), 1000*10**18);
     });
@@ -29,16 +29,16 @@ contract("GLDToken test", async accounts => {
         let account_two_ending_balance = web3.utils.fromWei(balance.toString(), "ether");
 
         // console.log("1:", account_two_ending_balance)
-        // console.log("2:", new Number(account_two_starting_balance) + amount)
+        // console.log("2:", Number(account_two_starting_balance) + amount)
 
         assert.equal(
             account_one_ending_balance,
-            new Number(account_one_starting_balance) - amount,
+            Number(account_one_starting_balance) - amount,
             "Amount wasn't correctly taken from the sender"
         );
         assert.equal(
             account_two_ending_balance,
-            new Number(account_two_starting_balance) + amount,
+            Number(account_two_starting_balance) + amount,
             "Amount wasn't correctly sent to the receiver"
         );
     });

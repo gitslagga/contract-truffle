@@ -10,6 +10,9 @@ the solidity contract using truffle
 * npm i --save @uniswap/v2-periphery
 * truffle compile --all
 * truffle migrate --reset
+* npm install @truffle/hdwallet-provider
+* npm install chai
+* truffle test
 * truffle test ./test/metacoin.js
 
 
