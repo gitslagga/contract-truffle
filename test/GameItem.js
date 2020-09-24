@@ -1,5 +1,3 @@
-const expect = require('chai').expect
-
 const GameItem = artifacts.require("GameItem");
 
 contract('Testing ERC721 contract', async function(accounts) {
@@ -19,38 +17,38 @@ contract('Testing ERC721 contract', async function(accounts) {
         const token = await GameItem.deployed()
         const tokenId = await token.awardItem(account1, tokenUri1, {from: accounts[0]})
 
-        expect(await token.symbol()).to.equal(symbol)
-        expect(await token.name()).to.equal(name)
-        // expect(tokenId).to.be.equal(1)
+        assert.equal(await token.symbol(), symbol)
+        assert.equal(await token.name(), name)
+        // assert.equal(tokenId, 1)
     })
 
     it(' should allow creation of multiple unique tokens and manage ownership', async () => {
         const token = await GameItem.deployed();
         await token.awardItem(account2, tokenUri2, {from: accounts[0]})
 
-        expect(Number(await token.totalSupply())).to.equal(2)
+        assert.equal(Number(await token.totalSupply()), 2)
 
-        expect(await token.tokenURI(1)).to.equal(tokenUri1)
-        expect(await token.tokenURI(2)).to.equal(tokenUri2)
-        // expect(await token.tokenURI(9999)).to.be.rejectedWith(`VM Exception while processing transaction: revert ERC721Metadata: URI query for nonexistent token`)
+        assert.equal(await token.tokenURI(1), tokenUri1)
+        assert.equal(await token.tokenURI(2), tokenUri2)
+        // assert.equal(await token.tokenURI(9999), /VM Exception while processing transaction: revert ERC721Metadata: URI query for nonexistent token/)
 
-        expect(await token.ownerOf(1)).to.equal(account1)
-        expect(await token.ownerOf(2)).to.equal(account2)
+        assert.equal(await token.ownerOf(1), account1)
+        assert.equal(await token.ownerOf(2), account2)
     })
 
     it(' should allow safe transfers', async () => {
         const token = await GameItem.deployed();
         // const unownedTokenId = token.safeTransferFrom(account2, account3, 1, {from: accounts[2]}) // tokenId
-        // expect(unownedTokenId).to.be.rejectedWith(/VM Exception while processing transaction: revert/)
+        // assert.equal(unownedTokenId, /VM Exception while processing transaction: revert/)
 
         // const wrongOwner = token.safeTransferFrom(account1, account3, 2, {from: accounts[1]}) // wrong owner
-        // expect(wrongOwner).to.be.rejectedWith(/VM Exception while processing transaction: revert/)
+        // assert.equal(wrongOwner, /VM Exception while processing transaction: revert/)
 
         // // Noticed that the from gas param needs to be the token owners or it fails
         // const wrongFromGas = token.safeTransferFrom(account2, account3, 2, {from: accounts[1]}) // wrong owner
-        // expect(wrongFromGas).to.be.rejectedWith(/VM Exception while processing transaction: revert/)
+        // assert.equal(wrongFromGas, /VM Exception while processing transaction: revert/)
 
         await token.safeTransferFrom(account2, account3, 2, {from: accounts[2]})
-        expect(await token.ownerOf(2)).to.equal(account3)
+        assert.equal(await token.ownerOf(2), account3)
     })
 })

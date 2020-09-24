@@ -19,9 +19,7 @@
  */
 
 const HDWalletProvider = require('@truffle/hdwallet-provider');
-const fs = require('fs');
-
-const mnemonic = fs.readFileSync(".secret").toString().trim();
+require('dotenv').config();
 
 module.exports = {
   /**
@@ -48,15 +46,15 @@ module.exports = {
     },
     ropsten: {
         provider: function() {
-            return new HDWalletProvider(mnemonic,
-                "https://ropsten.infura.io/v3/09c30ad18ed145c3997b0621e1816909")
+            return new HDWalletProvider(`${process.env.MNEMONIC}`,
+                `https://ropsten.infura.io/v3/${process.env.INFURA_ID}`)
         },
-        network_id: 2
+        network_id: 3
     },
     mainnet: {
         provider: function() {
-            return new HDWalletProvider(mnemonic,
-                "https://mainnet.infura.io/v3/09c30ad18ed145c3997b0621e1816909")
+            return new HDWalletProvider(`${process.env.MNEMONIC}`,
+                `https://mainnet.infura.io/v3/${process.env.INFURA_ID}`)
         },
         network_id: 1
     },
@@ -106,4 +104,10 @@ module.exports = {
       }
     },
   },
+  plugins: [
+    'truffle-plugin-verify'
+  ],
+  api_keys: {
+    etherscan: process.env.ETHERSCAN_API_KEY
+  }
 };
