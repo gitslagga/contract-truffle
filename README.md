@@ -16,6 +16,11 @@ the solidity contract using truffle
 * truffle test ./test/metacoin.js
 
 
+## truffle verify
+* npm install truffle-plugin-verify
+* truffle run verify Migrations GLDToken GameItem --network=ropsten --license=MIT
+
+
 ## truffle config
 * ganache node config
 ```
