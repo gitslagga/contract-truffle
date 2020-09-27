@@ -12,7 +12,7 @@ contract("Casino test", async accounts => {
         let account_one = accounts[0];
         let account_two = accounts[1];
 
-        let instance = await Casino.deployed();
+        let instance = await Casino.new();
 
         await instance.fund({from:account_one, value:100});
 
