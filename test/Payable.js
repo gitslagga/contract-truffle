@@ -17,9 +17,12 @@ contract("Payable test", async accounts => {
         let caller = await Caller.new()
 
         await testPayable.sendTransaction({from:accounts[1], value:2000000000000000000})
+    
+        let balance = await web3.eth.getBalance(testPayable.address)
         let x = await testPayable.x()
         let y = await testPayable.y()
         
+        assert.equal(balance, 2000000000000000000)
         assert.equal(x.valueOf(), 2)
         assert.equal(y.valueOf(), 2000000000000000000)
 
