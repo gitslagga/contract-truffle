@@ -9,6 +9,7 @@ the solidity contract using truffle
 * npm install --save @uniswap/v2-core
 * npm install --save @uniswap/v2-periphery
 * npm install dotenv
+* npm install big-number
 * truffle compile --all
 * truffle migrate --reset
 * npm install @truffle/hdwallet-provider

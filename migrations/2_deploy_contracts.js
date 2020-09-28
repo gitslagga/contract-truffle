@@ -5,8 +5,9 @@ const Test = artifacts.require("Test");
 const TestPayable = artifacts.require("TestPayable");
 const Caller = artifacts.require("Caller")
 const DeFi = artifacts.require("DeFi");
+const StakingToken = artifacts.require("StakingToken");
 
-module.exports = function(deployer) {
+module.exports = function(deployer, network, accounts) {
     deployer.deploy(GLDToken, 1000);
     deployer.deploy(GameItem, "GameItem", "ITM");
     deployer.deploy(Casino)
@@ -16,4 +17,5 @@ module.exports = function(deployer) {
     deployer.deploy(Caller)
     
     deployer.deploy(DeFi);
+    deployer.deploy(StakingToken, accounts[0], web3.utils.toWei("1000"));
 };
