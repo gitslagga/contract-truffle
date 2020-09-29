@@ -2,7 +2,7 @@ const GLDToken = artifacts.require("GLDToken");
 
 contract("GLDToken test", async accounts => {
     it("should put 1000*10**18 GLDToken in the first account", async () => {
-        let instance = await GLDToken.new(1000);
+        let instance = await GLDToken.new(web3.utils.toWei("1000"));
         let balance = await instance.balanceOf.call(accounts[0]);
         assert.equal(balance.valueOf(), 1000*10**18);
     });
