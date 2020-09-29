@@ -10,19 +10,24 @@ interface IERC20 {
 }
 
 contract MyContract {
-    IERC20 usdt;
+    IERC20 public usdt;
+    address public user;
 
     constructor(IERC20 _usdt) public {
         usdt = _usdt;
+        user = msg.sender;
     }
 
-    function deposit(address recipient, uint256 amount) external returns (bool) {
-        usdt.transfer(recipient, amount);
+    //increase token's amount
+    //need user approve usdt token
+    function deposit(uint256 amount) external returns (bool) {
+        usdt.transferFrom(user, address(this), amount);
         return true;
     }
 
-    function withdraw(address sender, address recipient, uint256 amount) external returns (bool) {
-        usdt.transferFrom(sender, recipient, amount);
+    //decrease token's amount
+    function withdraw(uint256 amount) external returns (bool) {
+        usdt.transfer(user, amount);
         return true;
     }
 }
