@@ -16,9 +16,9 @@ contract("Casino test", async accounts => {
 
         await instance.fund({from:account_one, value:100});
 
-        await instance.bet(6, {from:account_two, value:1});
         let maxbet = await instance.getMaxBet();
-
         assert.equal(maxbet, 1, "getMaxBet wasn't correctly taken from the sender");
+
+        await instance.bet(6, {from:account_two, value:1});
     });
 });
