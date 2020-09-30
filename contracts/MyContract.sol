@@ -4,9 +4,9 @@ pragma solidity >0.6.0 <0.8.0;
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 contract MyContract {
-    address payable public _owner;
-    IERC20 public _token;
-    mapping (address => uint256) public _balances;
+    address payable private _owner;
+    IERC20 private _token;
+    mapping (address => uint256) private _balances;
 
     constructor(IERC20 token) public {
         _owner = msg.sender;
@@ -20,7 +20,11 @@ contract MyContract {
 
     function changeOwner(address payable owner) external onlyOwner {
         _owner = owner;
-    }    
+    }
+    
+    function getBalance(address account) external view returns (uint256) {
+        return _balances[account];
+    }
 
     //increase amount
     function deposit() external payable returns (bool) {

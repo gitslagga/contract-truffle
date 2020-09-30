@@ -17,8 +17,8 @@ contract('MyContract', (accounts) => {
     it('creates deposit.', async () => {
         await myContract.deposit({from:accounts[0], value:amount});
 
-        let _balances = await myContract._balances(accounts[0]);
-        assert.equal(_balances.valueOf(), amount);
+        let total = await myContract.getBalance(accounts[0]);
+        assert.equal(_balances.valueOf(), total);
 
         let balance = await web3.eth.getBalance(contractAddress);
         assert.equal(balance.valueOf(), amount);
