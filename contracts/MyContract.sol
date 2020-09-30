@@ -1,20 +1,14 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >0.6.0 <0.8.0;
 
-interface ITOKEN20 {
-    function transfer(address recipient, uint256 amount) external returns (bool);
-
-    function balanceOf(address account) external view returns (uint256);
-
-    function transferFrom(address sender, address recipient, uint256 amount) external returns (bool);
-}
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 contract MyContract {
     address payable public _owner;
-    ITOKEN20 public _token;
+    IERC20 public _token;
     mapping (address => uint256) public _balances;
 
-    constructor(ITOKEN20 token) public {
+    constructor(IERC20 token) public {
         _owner = msg.sender;
         _token = token;
     }
