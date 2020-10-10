@@ -52,7 +52,7 @@ contract SlotMachine {
         return true;
     }
 
-    function play(bytes32[] memory source, uint256[] memory amount) public returns (bool) {
+    function play(bytes32[] memory source, uint256[] memory amount) public payable returns (bool) {
         require(source.length == amount.length, "source and amount length do not match.");
         
         //TODO play game
