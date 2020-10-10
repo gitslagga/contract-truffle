@@ -69,7 +69,7 @@ contract SlotMachine {
         
         uint256 total = 0;
         for (uint i = 0; i < amount.length; i++) {
-            total += _multiple[source[i]] * amount[i] * _price;
+            total += amount[i] * _price;
         }
 
         require(msg.value >= total, "msg value must get total amount.");

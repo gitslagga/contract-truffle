@@ -7,6 +7,7 @@ const Caller = artifacts.require("Caller");
 const DeFi = artifacts.require("DeFi");
 const StakingToken = artifacts.require("StakingToken");
 const MyContract = artifacts.require("MyContract");
+const SlotMachine = artifacts.require("SlotMachine");
 
 module.exports = function(deployer, network, accounts) {
     deployer.deploy(GLDToken, web3.utils.toWei("1000"));
@@ -21,4 +22,5 @@ module.exports = function(deployer, network, accounts) {
     deployer.deploy(StakingToken, accounts[0], web3.utils.toWei("1000"));
     
     deployer.deploy(MyContract, GLDToken.address);
+    deployer.deploy(SlotMachine);
 };
